@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils import timezone
+
 
 User = get_user_model()
 
@@ -25,8 +27,7 @@ class Project(models.Model):
     description = models.CharField(max_length=1024, blank=True, null=True, verbose_name='描述')
     last_update_time = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='创建人')
-
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="创建人")
 
 class Host(models.Model):
     """
@@ -89,6 +90,9 @@ class ApiRunRecord(models.Model):
     return_code = models.CharField(max_length=10,verbose_name='返回的code')
     return_content = models.TextField(null=True,verbose_name='返回的内容')
     api = models.ForeignKey(Api,on_delete=models.CASCADE,verbose_name='关联的API',null=True)
+
+
+
 
     class Meta:
         ordering = ['-create_time']
@@ -156,3 +160,15 @@ class CaseApiRunRecord(models.Model):
     return_content = models.TextField(null=True, verbose_name='返回的内容')
     api = models.ForeignKey(Api, on_delete=models.CASCADE, verbose_name='关联的API', null=True)
     case_record = models.ForeignKey(CaseRunRecord,on_delete=models.CASCADE,verbose_name='关联的case_record',related_name='api_records')
+
+
+# class ApiDayNumber(models.Model):
+#     day=models.DateField(verbose_name='日期',default=timezone.now)
+#     count=models.IntegerField(verbose_name='接口运行次数',default=0) #接口运行次数
+#
+#
+#     class Meta:
+#         verbose_name = '接口运行次数'
+#         verbose_name_plural = verbose_name
+#     def __str__(self):
+#         return str(self.day)
