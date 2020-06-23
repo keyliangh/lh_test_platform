@@ -1,4 +1,5 @@
-# kc_test_server
+# lh_test_-platform
+
 Vue+Django测试平台项目v1.1
 
 v1.0 版本 版本上线完成基本人员信息展示，接口数据添加，运行，用例添加，运行，运行记录功能
