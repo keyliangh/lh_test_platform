@@ -116,7 +116,7 @@ class CaseArgument(models.Model):
     """
     case = models.ForeignKey(Case, on_delete=models.CASCADE, verbose_name='用例', null=True, related_name='arguments')
     name = models.CharField(max_length=100, verbose_name='参数名字')
-    value = models.CharField(max_length=100, verbose_name='参数的值')
+    value = models.CharField(max_length=2048, verbose_name='参数的值')
 
 
 class ApiArgument(models.Model):

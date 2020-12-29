@@ -274,10 +274,21 @@ class RunCaseView(views.APIView):
                         dictor_data = resp.cookies
                     elif api_argument.origin == 'BODY':
                         dictor_data = resp.json()
+                    elif api_argument.origin == 'RESPONSE':
+                        dictor_data = resp.text
+
                     argument_value = dictor.dictor(dictor_data,api_argument.format)
-                    global_arguments[api_argument.name] = argument_value
+
+                   #写死处理获取全部参数
+                    if api_argument.format == 'rep':
+                        global_arguments[api_argument.name] = dictor_data
+                    else:
+                        global_arguments[api_argument.name] = argument_value
+
+
                     #{"token": "xxx"} = > token
         serializer = CaseRunRecordSerializer(case_record)
+
         return Response(serializer.data)
 
 class RecordView(views.APIView):
