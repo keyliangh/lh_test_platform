@@ -1,4 +1,4 @@
-# lh_test_-platform
+# lh_test_platform
 
 Vue+Django测试平台项目v1.1
 
